@@ -22,4 +22,38 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ## het project 
-deeisen voor het project waren 
+de eisen voor dit project was(sit is een stuk uit de plan van eisen van dit project):  
+Accountsysteem 
+Inloggen:
+Dit is er nodig om in te loggen
+    • Email 
+    • Wachtwoord 
+        ◦ Moet encryptie zijn.
+Rollen:
+Dit zijn de rollen en de dingen die ze kunnen doen(als een functie er niet instaat mag die rol het niet doen):
+    • gast 
+        ◦ kan een account maken op de website 
+        ◦ kan reservering maken en die beheren 
+    • medewerker
+        ◦ kan reserveringen beheren en aanmaken
+    • administrator
+        ◦ heel de applicatie beheren
+        ◦ medewerkers accounts aan maken 
+        ◦ kan financiële administratie zien en beheren
+
+Reserveringsysteem
+    • Kanten kunnen reservering maken.
+        ◦ Kan reservering terug zien.
+        ◦ Kan eigen reservering bewerken.
+        ◦ Kan eigen reservering annuleren.
+    • Medewerken kunnen reserveringen maken. 
+        ◦ Kan reserveringen terug zien 
+        ◦ Kan  reserveringen beheren
+        ◦ Kan reserveringen in zien
+    • Bij reserveringen kan worden gekozen voor deze opties:
+        ◦ Snackpakket (basis € 7,50 p.p. of luxe € 10,00 р.р.) 
+        ◦ Kinderpartij (chips, cola en verrassing € 6,50 p.p.)
+        ◦ Vrijgezellenfeest (4 consumpties € 15,00 p.p.)
+    • Als er meerde banen worden gereserveerd moeten zo dicht bij elkaar komen.
+    • Als klant reservatie maakt word er een baan aan gewezen(hij kan niet de baan kiezen).  
+Style eisen 
