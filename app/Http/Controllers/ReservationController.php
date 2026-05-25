@@ -116,7 +116,6 @@ class ReservationController extends Controller
         }
         $selectedBanen = array_slice($availableBanen, 0, $data['banen']);
 
-
         //create reservation
         $reservation = Reservation::create([
             'num_adults' => $data['num_adults'],
@@ -208,15 +207,17 @@ class ReservationController extends Controller
         // start time (rounded to hour)
         $start = Carbon::createFromFormat('Y-m-d\TH:i', $data['time_start'])
             ->startOfHour();
-
-        // make end time by adding duration (hours)
-        $duration = (int) $data['time'];
+        //make end time bij adding duration(hours) start_time
+        $duration = intval($data['time']);
         $end = $start->copy()->addHours($duration);
 
         // check which banen are available
         $availableBanen = [];
         for ($baan = 1; $baan <= 8; $baan++) {
-            if ($this->isBaanAvailable($baan, $start, $end)) {
+
+            if ($this->isBaanAvailable($baan, $start, $end,)) {
+                $availableBanen[] = $baan;
+            }elseif($baan = $id){
                 $availableBanen[] = $baan;
             }
         }
@@ -228,7 +229,6 @@ class ReservationController extends Controller
         }
 
         $selectedBanen = array_slice($availableBanen, 0, $data['banen']);
-
         // update reservation
         $reservation = Reservation::findOrFail($id);
 
@@ -303,15 +303,15 @@ class ReservationController extends Controller
         $minimumAdultTotal = $banen * $minimumAdultsPerBaan;
         $maxKidsTotal = $banen * $maxKidsPerBaan;
 
-        if ($adults > $maxAdultsTotal or $adults < $minimumAdultTotal) {
+        if ($adults > $maxAdultsTotal ) {
             return "Te veel volwassenen voor {$banen} banen (max {$maxAdultsTotal}).";
         }
 
-        if ($kids > $maxKidsTotal) {
-            return "Te veel kinderen voor {$banen} banen (max {$maxKidsTotal}).";
+        if ($kids > $maxKidsTotal and $adults < $minimumAdultTotal) {
+            return "Te veel kinderen voor {$banen} banen (max {$maxKidsTotal}, min volwassenen {$minimumAdultsPerBaan} ).";
         }
 
-        return null;
+        return true;
     }
 
 }
